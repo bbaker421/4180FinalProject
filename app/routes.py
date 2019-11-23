@@ -31,15 +31,22 @@ def authenticate():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        unknown_image = face_recognition.load_image_file("./unknown_people/unknownapurva.jpeg")
-        unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
+        unknown_image = face_recognition.load_image_file("./unknown_people/unknown_image.jpg")
+        try:
+            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
+        except Exception as err:
+            print('No faces')
+            return "NO FACES"
         results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
+
         if results[1]:
             print("auth")
-            return "Authenticate"
+            #os.remove('unknown_people/unknown_image.jpg')
+            return "1"
         else:
+            #os.remove('unknown_people/unknown_image.jpg')
             print("inv")
-            return "Invalid"
+            return "0"
     except Exception as err:
         print('error')
-        return 'NOT OK'
+        return 'ERROR'
