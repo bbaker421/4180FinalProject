@@ -39,13 +39,24 @@ def authenticate():
             return "NO FACES"
         results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
 
+
         if results[1]:
-            print("auth")
-            #os.remove('unknown_people/unknown_image.jpg')
+            print("authorized")
+
+            if os.path.exists("unknown_people/unknown_image.jpg"):
+                os.remove("unknown_people/unknown_image.jpg")
+            else:
+                print("The file does not exist")
+
             return "1"
         else:
-            #os.remove('unknown_people/unknown_image.jpg')
-            print("inv")
+            print("not authorized")
+
+            if os.path.exists("unknown_people/unknown_image.jpg"):
+                os.remove("unknown_people/unknown_image.jpg")
+            else:
+                print("The file does not exist")
+
             return "0"
     except Exception as err:
         print('error')
