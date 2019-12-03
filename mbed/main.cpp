@@ -31,8 +31,7 @@ void RGBLed::write(float red,float green, float blue)
 //Setup RGB led using PWM pins and class
 RGBLed myRGBled(p24,p25,p26); //RGB PWM pins
  
-Servo left(p21);
-Servo right(p22);
+Servo s(p22);
 
 RawSerial  pi(USBTX, USBRX);
 
@@ -42,32 +41,25 @@ void dev_recv()
     while(pi.readable()) {
         temp = pi.getc();
         pi.putc(temp);
-        if (temp=='1') myRGBled.write(0.0,1.0,0.0);
+        if (temp=='1') {
+            myRGBled.write(0.0,1.0,0.0);
+            s = 0.9; // Open
+            wait(3.0);
+            s = 0.0; // Close
+            }
         if (temp=='0')  myRGBled.write(1.0,0.0,0.0);
     }
 }
 
 int main()
 {
+     s.calibrate(0.001, 45.0);
+     s = 0.0;
      pi.baud(9600);
     pi.attach(&dev_recv, Serial::RxIrq);
     while(1) {
         sleep();
     }
-    /*
-    myRGBled.write(0.0,1.0,0.0); //green
-    while (1) {
-    for(float p=0; p<0.5; p += 0.1) {
-        left = p;
-        right = p;
-        wait(0.2);
-    }
-    for(float p=0.5; p<1.0; p += 0.1) {
-        left = p;
-        right = p;
-        wait(0.1);
-    }
-    }*/
     
    /* while(1) {
         if (pc.getc() == '1'){
