@@ -36,7 +36,7 @@ def authenticate():
             unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
         except Exception as err:
             print('No faces')
-            return "NO FACES"
+            return "0"
         results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
 
 
