@@ -31,7 +31,7 @@ int main(int argc, char ** argv) {
   //sleep(1);
   // Write to the port
 
-  //n = write(fd,"Sending result to mbed...\r",26);
+  n = write(fd,"Sending result to mbed...\r",26);
   
   /*if (n < 0) {
     perror("Write failed - ");
