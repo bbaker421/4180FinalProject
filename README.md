@@ -100,12 +100,12 @@ NOTE: This step requires that the mbed is powered by the Pi. Connect the mbed to
    ```
 The full code for the Pi camera, sending/receiving information from the server, and sending the authentication status to the mbed can be seen [here](https://github.com/dgr1/4180FinalProject/blob/master/pi/camera.py)
 
+
 ### Server
 
 Users are authenticated based on the first image in a folder called known_faces in the top level directory. Access is granted to a given individual or set of individuals.
 
 *Load known face data*
-
 
 ```
 daniel_image = face_recognition.load_image_file("known_people/daniel.jpg")
@@ -120,16 +120,16 @@ known_faces = [
 ]
 ```
 
-*Revieve image in POST request*
 
+*Receive image in POST request*
 
 ```
 @app.route('/authenticate', methods=['GET', 'POST'])
 def authenticate():
 ```
 
-*Authenticate based on facial recognition*
 
+*Authenticate based on facial recognition*
 
 ```
 try:
@@ -148,6 +148,8 @@ try:
          return "0"
      results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
  ```
+ 
+ 
 *Respond with outcome*
 
 ```
