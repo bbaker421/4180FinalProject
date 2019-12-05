@@ -173,6 +173,16 @@ if results[1]:
 
 ### Mbed
 
+*Wiring*
+
+|mbed|RGB LED |
+|----|--------|
+| p24| 1-RED  |
+| p25| 3-GREEN|
+| p26| 4-BLUE |
+| gnd| 2      |
+
+NOTE: Use 180-ohm resistor when wiring red LED and 100-ohm resistors when wiring green and blue LEDs.
 
 ```
 Give an example
