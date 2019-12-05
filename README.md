@@ -31,25 +31,48 @@ TODO
 
 ### Raspberry Pi 4
 
-1. Capture image
+*Import libraries*
 
 ```
-Connect the NoIR Camera V2 to the Pi as seen [here](https://thepihut.com/blogs/raspberry-pi-tutorials/16021420-how-to-install-use-the-raspberry-pi-camera)
+from picamera import PiCamera
+from time import sleep
+import os
+import RPi.GPIO as GPIO
 ```
 
-2. Send image to server
+*Capture image*
+
+1. Connect the NoIR Camera V2 to the Pi as seen [here](https://thepihut.com/blogs/raspberry-pi-tutorials/16021420-how-to-install-use-the-raspberry-pi-camera)
+
+2. Connect the Pushbutton to the Pi through GPIO
+```
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+```
+You can set the GPIO pin through the first parameter of the setup function. Additionally, GPIO.PUD_DOWN is used to indicate that the button will be registered as "high" when pressed.
+
+3. Create a function to read in the button press
+   - called in the main loop, will be called everytime
+   - uses GPIO.input(PIN_NUMBER) to read in the value from the button
+   - if the button is pressed, the camera takes an image and saves it to the desired path as a JPG
+   ```
+   camera.capture('/PATH/NAME.jpg')
+   ```
+
+*Send image to server*
 
 ```
 Explain
 ```
 
-3. Receive authentication status from server
+*Receive authentication status from server*
 
 ```
 Explain
 ```
 
-4. Send authentication status to mbed
+*Send authentication status to mbed*
 
 ```
 Explain
