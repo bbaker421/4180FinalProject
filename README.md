@@ -173,6 +173,15 @@ if results[1]:
          return "0"
 ```
 
+*Running and testing the server*
+To run the server, run the following commands:
+```
+$ export FLASK_APP = imageServer.py
+$ flask run host=0.0.0.0
+```
+
+To test that the server is running, navigate to localhost:5000 on the computer running the server, you should recieve the text "Huzzah Authentication" as a response.
+
 ### Mbed
 
 Receives authentication status from the Pi and performs certain actions based on this information.
