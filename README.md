@@ -23,9 +23,11 @@ What you need before you begin
 
 #### Software
 
-```
-TODO
-```
+* [flask](https://flask.palletsprojects.com/en/1.1.x/)
+* [face_recognition](https://github.com/ageitgey/face_recognition)
+* [requests](https://pypi.org/project/requests/2.7.0/)
+* [C++ Standard Library](www.cplusplus.com)
+* [Python Standard Library](https://www.python.org/)
 
 ## How It Works
 
@@ -111,16 +113,6 @@ Give an example
 Give an example
 ```
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
 
 ## Authors
 
@@ -129,11 +121,3 @@ Add additional notes about how to deploy this on a live system
 * **Joe Zein**        - *Mbed*        - joezein@gatech.edu
 
 See also the list of [contributors](https://github.com/dgr1/4180FinalProject/contributors) who participated in this project.
-
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
