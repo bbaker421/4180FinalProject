@@ -12,16 +12,14 @@ What you need before you begin
 
 #### Hardware (Links Included)
 
-```
-Raspberry Pi 4                   - https://www.raspberrypi.org/products/raspberry-pi-4-model-b/specifications/
-Pi NoIR Camera V2                - https://www.raspberrypi.org/products/pi-noir-camera-v2/
-Pushbutton                       - https://os.mbed.com/users/4180_1/notebook/pushbuttons/
-mbed LPC1768                     - https://os.mbed.com/platforms/mbed-LPC1768/
-RGB LED                          - https://os.mbed.com/users/4180_1/notebook/rgb-leds/
-Speaker - PCB Mount              - https://www.sparkfun.com/products/11089
-2N3904 General Purpose Amplifier - https://os.mbed.com/users/4180_1/notebook/using-a-speaker-for-audio-output/
-Servo                            - https://os.mbed.com/cookbook/Servo
-```
+* [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/specifications/)
+* [Pi NoIR Camera V2](https://www.raspberrypi.org/products/pi-noir-camera-v2/)
+* [Pushbutton](https://os.mbed.com/users/4180_1/notebook/pushbuttons/)
+* [mbed LPC1768](https://os.mbed.com/platforms/mbed-LPC1768/)
+* [RGB LED](https://os.mbed.com/users/4180_1/notebook/rgb-leds/)
+* [Speaker - PCB Mount](https://www.sparkfun.com/products/11089)
+* [2N3904 General Purpose Amplifier](https://os.mbed.com/users/4180_1/notebook/using-a-speaker-for-audio-output/)
+* [Servo](https://os.mbed.com/cookbook/Servo)
 
 #### Software
 
