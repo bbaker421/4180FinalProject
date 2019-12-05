@@ -1,6 +1,6 @@
 #
-# To run from root directory: 
-# $ source venv/bin/activate
+# To run from app directory: 
+# $ source env/bin/activate
 # $ export FLASK_APP=imageServer.py
 # $ flask run
 #
