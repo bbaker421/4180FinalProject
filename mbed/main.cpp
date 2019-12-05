@@ -47,7 +47,7 @@ void dev_recv() {
       myRGBled.write(0.0, 1.0, 0.0);
       s = 0.9;                     // Open
       speaker.period(1.0 / 300.0); // 500hz period
-      speaker = 0.50;              // 25% duty cycle - mid range volume
+      speaker = 0.50;              
       wait(.5);
       speaker = 0.0; // turn off audio
 
