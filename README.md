@@ -279,7 +279,7 @@ while(pi.readable()) {
     }
     ```
 
-NOTE: Load the binary produced by the mbed compiler for this code onto the mbed before connecting to the Pi and running and the Python script for the camera
+NOTE: Load the binary produced by the mbed compiler for this code onto the mbed before connecting to the Pi and running the Python script for the camera
 
 Full code for the mbed can be seen [here](https://github.com/dgr1/4180FinalProject/blob/master/mbed/main.cpp)
 
