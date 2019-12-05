@@ -22,12 +22,12 @@ What you need before you begin
 * [Servo](https://os.mbed.com/cookbook/Servo)
 
 #### Software
-
+* [C++](www.cplusplus.com)
+* [Python](https://www.python.org/)
 * [flask](https://flask.palletsprojects.com/en/1.1.x/)
 * [face_recognition](https://github.com/ageitgey/face_recognition)
 * [requests](https://pypi.org/project/requests/2.7.0/)
-* [C++ Standard Library](www.cplusplus.com)
-* [Python Standard Library](https://www.python.org/)
+
 
 ## How It Works
 
@@ -101,9 +101,65 @@ The full code for the Pi camera, sending/receiving information from the server, 
 
 ### Server
 
+Users are authenticated based on the first image in a folder called known_faces in the top level directory. Access is granted to a given individual or set of individuals.
 
+*Load known face data*
 ```
-Give an example
+daniel_image = face_recognition.load_image_file("known_people/daniel.jpg")
+apurva_image = face_recognition.load_image_file("known_people/apurva.jpg")
+
+daniel_face_encoding = face_recognition.face_encodings(daniel_image)[0]
+apurva_face_encoding = face_recognition.face_encodings(apurva_image)[0]
+
+known_faces = [
+    daniel_face_encoding,
+    apurva_face_encoding
+]
+```
+*Revieve image in POST request*
+   ```
+   @app.route('/authenticate', methods=['GET', 'POST'])
+   def authenticate():
+   ```
+
+*Authenticate based on facial recognition*
+   ```
+   try:
+        if 'file' not in request.files:
+            return redirect(request.url)
+        file = request.files['file']
+        if file:
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        unknown_image = face_recognition.load_image_file("./unknown_people/unknown_image.jpg")
+        try:
+            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
+        except Exception as err:
+            print('No faces')
+            return "0"
+        results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
+    ```
+*Respond with outcome*
+```
+ if results[1]:
+            print("authorized")
+
+            if os.path.exists("unknown_people/unknown_image.jpg"):
+                os.remove("unknown_people/unknown_image.jpg")
+            else:
+                print("The file does not exist")
+
+            return "1"
+        else:
+            print("not authorized")
+
+            if os.path.exists("unknown_people/unknown_image.jpg"):
+                os.remove("unknown_people/unknown_image.jpg")
+            else:
+                print("The file does not exist")
+
+            return "0"
 ```
 
 ### Mbed
