@@ -104,6 +104,8 @@ The full code for the Pi camera, sending/receiving information from the server, 
 Users are authenticated based on the first image in a folder called known_faces in the top level directory. Access is granted to a given individual or set of individuals.
 
 *Load known face data*
+
+
 ```
 daniel_image = face_recognition.load_image_file("known_people/daniel.jpg")
 apurva_image = face_recognition.load_image_file("known_people/apurva.jpg")
@@ -116,50 +118,56 @@ known_faces = [
     apurva_face_encoding
 ]
 ```
+
 *Revieve image in POST request*
-   ```
-   @app.route('/authenticate', methods=['GET', 'POST'])
-   def authenticate():
-   ```
+
+
+```
+@app.route('/authenticate', methods=['GET', 'POST'])
+def authenticate():
+```
 
 *Authenticate based on facial recognition*
-   ```
-   try:
-        if 'file' not in request.files:
-            return redirect(request.url)
-        file = request.files['file']
-        if file:
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        unknown_image = face_recognition.load_image_file("./unknown_people/unknown_image.jpg")
-        try:
-            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
-        except Exception as err:
-            print('No faces')
-            return "0"
-        results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
-    ```
-*Respond with outcome*
+
 ```
- if results[1]:
-            print("authorized")
+try:
+     if 'file' not in request.files:
+         return redirect(request.url)
+     file = request.files['file']
+     if file:
+         filename = secure_filename(file.filename)
+         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-            if os.path.exists("unknown_people/unknown_image.jpg"):
-                os.remove("unknown_people/unknown_image.jpg")
-            else:
-                print("The file does not exist")
+     unknown_image = face_recognition.load_image_file("./unknown_people/unknown_image.jpg")
+     try:
+         unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
+     except Exception as err:
+         print('No faces')
+         return "0"
+     results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
+ ```
+*Respond with outcome*
 
-            return "1"
-        else:
-            print("not authorized")
+```
+if results[1]:
+         print("authorized")
 
-            if os.path.exists("unknown_people/unknown_image.jpg"):
-                os.remove("unknown_people/unknown_image.jpg")
-            else:
-                print("The file does not exist")
+         if os.path.exists("unknown_people/unknown_image.jpg"):
+             os.remove("unknown_people/unknown_image.jpg")
+         else:
+             print("The file does not exist")
 
-            return "0"
+         return "1"
+     else:
+         print("not authorized")
+
+         if os.path.exists("unknown_people/unknown_image.jpg"):
+             os.remove("unknown_people/unknown_image.jpg")
+         else:
+             print("The file does not exist")
+
+         return "0"
 ```
 
 ### Mbed
