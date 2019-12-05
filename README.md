@@ -174,6 +174,7 @@ if results[1]:
 ```
 
 *Running and testing the server*
+
 To run the server, run the following commands:
 ```
 $ export FLASK_APP = imageServer.py
