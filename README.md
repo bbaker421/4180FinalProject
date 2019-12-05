@@ -31,6 +31,7 @@ TODO
 
 ### Raspberry Pi 4
 
+
 *Import libraries*
 
 ```
@@ -39,6 +40,7 @@ from time import sleep
 import os
 import RPi.GPIO as GPIO
 ```
+
 
 *Capture image*
 
@@ -60,23 +62,40 @@ You can set the GPIO pin through the first parameter of the setup function. Addi
    camera.capture('/PATH/NAME.jpg')
    ```
 
+
 *Send image to server*
 
+Create a post request to send the image to the server
 ```
-Explain
+import requests
+url = 'http://URL_ADDRESS'
+files = {'file': open('/PATH/NAME.jpg', 'rb')}
+r = requests.post(url, files=files)
 ```
+The URL address is obtained from the server, explanation seen below in Server section. The request is sent using the Python standard library over HTTP.
+
 
 *Receive authentication status from server*
 
 ```
-Explain
+r = requests.post(url, files=files)
 ```
+After the request is sent, the server returns a '1' if the user is authorized or a '0' if the user is not authorized or if no faces are detected.
+
 
 *Send authentication status to mbed*
 
-```
-Explain
-```
+1. Create a C++ file to send the status received from the server to the mbed
+   - Communication is done through a serial port (USB)
+   - Code can be seen [here](https://github.com/dgr1/4180FinalProject/blob/master/pi/mbed_comm.cpp)
+
+2. Build the C++ file, which creates an executable
+3. Call the executable using the response from the server as a command line argument in the original python script
+   ```
+   cmd = './mbed_comm ' + r.content.decode("utf-8")
+   os.system(cmd)
+   ```
+The full code for the Pi camera, sending/receiving information from the server, and sending the authentication status to the mbed can be seen [here](https://github.com/dgr1/4180FinalProject/blob/master/pi/camera.py)
 
 ### Server
 
