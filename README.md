@@ -48,13 +48,13 @@ import RPi.GPIO as GPIO
 
 1. Connect the NoIR Camera V2 to the Pi as seen [here](https://thepihut.com/blogs/raspberry-pi-tutorials/16021420-how-to-install-use-the-raspberry-pi-camera)
 
-2. Connect the Pushbutton to the Pi through GPIO
+2. Connect the Pushbutton to the Pi through GPIO (this project uses pin 10)
 ```
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 ```
-You can set the GPIO pin through the first parameter of the setup function. Additionally, GPIO.PUD_DOWN is used to indicate that the button will be registered as "high" when pressed.
+You can set the GPIO pin through the first parameter of the setup function. Additionally, GPIO.PUD_DOWN is used to indicate that the button will be registered as "high" when pressed. Be sure to use an external pullup resistor when connecting to ground while setting up the pushbutton.
 
 3. Create a function to read in the button press
    - called in the main loop, will be called everytime
@@ -93,6 +93,7 @@ After the request is sent, the server returns a '1' if the user is authorized or
 
 2. Build the C++ file, which creates an executable
 3. Call the executable using the response from the server as a command line argument in the original python script
+NOTE: This step requires that the Mbed is powered by the Pi. Connect the Mbed to the Pi with the USB.
    ```
    cmd = './mbed_comm ' + r.content.decode("utf-8")
    os.system(cmd)
