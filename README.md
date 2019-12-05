@@ -1,19 +1,26 @@
-# FACE LOCK
+# ECE 4180 Final Project - FACE LOCK
 
 This project uses facial recognition to authenticate a user in order to open a door lock. If a user is authorized, the door lock opens, a green LED is lit, and a noise is played from a speaker. If a user is not authorized, the door lock will not open, a red LED is lit, and police siren noises are played from the speaker.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+What you need to install the hardware and software and how to install them
 
-#### Hardware
+#### Hardware (Links Included)
 
 ```
-Give examples
+Raspberry Pi 4                   - https://www.raspberrypi.org/products/raspberry-pi-4-model-b/specifications/
+Pi NoIR Camera V2                - https://www.raspberrypi.org/products/pi-noir-camera-v2/
+Pushbutton                       - https://os.mbed.com/users/4180_1/notebook/pushbuttons/
+mbed LPC1768                     - https://os.mbed.com/platforms/mbed-LPC1768/
+RGB LED                          - https://os.mbed.com/users/4180_1/notebook/rgb-leds/
+Speaker - PCB Mount              - https://www.sparkfun.com/products/11089
+2N3904 General Purpose Amplifier - https://os.mbed.com/users/4180_1/notebook/using-a-speaker-for-audio-output/
+
 ```
 
 #### Software
