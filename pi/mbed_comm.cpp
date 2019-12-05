@@ -33,12 +33,6 @@ int main(int argc, char ** argv) {
 
   n = write(fd,"Sending result to mbed...\r",26);
   
-  /*if (n < 0) {
-    perror("Write failed - ");
-    return -1;
-  }*/
-  // Read the characters from the port if they are there
-  //sleep(2);
   n = read(fd, buf, 11);
   if (n < 0) {
     perror("Read failed - ");
@@ -48,22 +42,12 @@ int main(int argc, char ** argv) {
     buf[n] = 0;
     printf("%i bytes read back: %s\n\r", n, buf);
   }
-  //sleep(1);
+
   //Send command to blink mbed led 10 times at one second rate
   //mbed code turns on led2 with a '1' and off with a '0'
   //mbed echoes back each character
   buf[1] = '\r'; // end of line
   buf[2] = 0; // end of string
-  /*for(int i=0;i<10;i++) {
-      write(fd,"1",1);        //led on
-      sleep(1);               //one second delay  
-      read(fd,buf,1); //read echo character
-      printf("%s\n\r",buf);   //print in terminal window
-      write(fd,"0",1);        //led off
-      sleep(1);   
-      read(fd,buf,1);
-      printf("%s\n\r",buf);
-  }*/
   write(fd, argv[1], 1);
   // Don't forget to clean up and close the port
   tcdrain(fd);
