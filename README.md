@@ -191,7 +191,12 @@ NOTE: Use 180-ohm resistor when wiring red LED and 100-ohm resistors when wiring
 |p22 |PWM Signal Input|       N/A        |
 
 USE THE DIAGRAM BELOW WHEN CONNECTING THE SPEAKER
+
+
 ![Image of Speaker](https://os.mbed.com/media/uploads/4180_1/_scaled_speakerdriverschem.png)
+
+
+NOTE:
 
 ## Authors
 
