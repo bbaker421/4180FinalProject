@@ -34,7 +34,7 @@ TODO
 1. Capture image
 
 ```
-Explain
+Connect the NoIR Camera V2 to the Pi as seen [here](https://thepihut.com/blogs/raspberry-pi-tutorials/16021420-how-to-install-use-the-raspberry-pi-camera)
 ```
 
 2. Send image to server
