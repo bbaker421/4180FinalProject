@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What you need to install the hardware and software and how to install them
+What you need before you begin
 
 #### Hardware (Links Included)
 
@@ -26,40 +26,39 @@ Servo                            - https://os.mbed.com/cookbook/Servo
 #### Software
 
 ```
-Give examples
+TODO
 ```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## How It Works
 
 ### Raspberry Pi 4
 
-Explain what these tests test and why
+1. Capture image
 
 ```
-Give an example
+Explain
+```
+
+2. Send image to server
+
+```
+Explain
+```
+
+3. Receive authentication status from server
+
+```
+Explain
+```
+
+4. Send authentication status to mbed
+
+```
+Explain
 ```
 
 ### Server
 
-Explain what these tests test and why
 
 ```
 Give an example
@@ -67,7 +66,6 @@ Give an example
 
 ### Mbed
 
-Explain what these tests test and why
 
 ```
 Give an example
@@ -87,19 +85,12 @@ Add additional notes about how to deploy this on a live system
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
 ## Authors
 
 * **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
