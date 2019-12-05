@@ -93,7 +93,7 @@ After the request is sent, the server returns a '1' if the user is authorized or
 
 2. Build the C++ file, which creates an executable
 3. Call the executable using the response from the server as a command line argument in the original python script
-NOTE: This step requires that the Mbed is powered by the Pi. Connect the Mbed to the Pi with the USB.
+NOTE: This step requires that the mbed is powered by the Pi. Connect the mbed to the Pi with the USB.
    ```
    cmd = './mbed_comm ' + r.content.decode("utf-8")
    os.system(cmd)
@@ -173,6 +173,8 @@ if results[1]:
 
 ### Mbed
 
+Receives authentication status from the Pi and performs certain actions based on this information.
+
 *Wiring*
 
 |mbed|RGB LED |
@@ -196,7 +198,89 @@ USE THE DIAGRAM BELOW WHEN CONNECTING THE SPEAKER
 ![Image of Speaker](https://os.mbed.com/media/uploads/4180_1/_scaled_speakerdriverschem.png)
 
 
-NOTE:
+NOTE: Connect resistor R1 to p21 on the mbed.
+
+*Code*
+
+Make sure all components are defined as seen below:
+```
+RGBLed myRGBled(p24,p25,p26);
+Servo servo(p22);
+PwmOut speaker(p21);
+RawSerial pi(USBTX, USBRX);
+```
+
+Additionally, receive status from the Pi through serial communication:
+```
+while(pi.readable()) {
+        temp = pi.getc();
+        .
+        .
+        .
+}
+```
+
+1. RBG LED
+   - off by default
+   - turns red if user is unauthorized
+   - turns green if user is authenticated
+   
+   ```
+   if (temp == '1') // user is authenticated
+   {
+       myRGBled.write(0.0,1.0,0.0); // green
+   }
+   
+   if (temp == '0') // user unauthorized
+   {
+       myRGBled.write(1.0,0.0,0.0); // red
+   }
+   ```
+   
+2. Servo
+   - only opens if the user is authorized
+   - closes automatically 3 seconds after it is opened
+   
+   ```
+   if (temp == '1') # user is authenticated
+   {
+       servo = 0.9; // open
+       wait(3.0);
+       servo = 0.0; // close
+   }
+   ```
+ 
+ 3. Speaker
+    - plays one tone if user is authenticated
+    - plays police sirens if user is unauthorized
+    
+    ```
+    if (temp == '1') // user is authenticated
+    {
+        speaker.period(1.0/300.0); // 500hz period
+        speaker =0.50; // 25% duty cycle - mid range volume
+        wait(.5);
+        speaker=0.0; // turn off audio
+    }
+   
+    if (temp == '0') // user unauthorized
+    { 
+        for (int i = 0; i < 7; i= i + 2) 
+        {
+            speaker.period(1.0 / 969.0);
+            speaker = float(i) / 50.0;
+            wait(0.5);
+            speaker.period(1.0 / 800.0);
+            wait(0.5);
+        }
+        speaker = 0.0;
+    }
+    ```
+
+NOTE: Load the binary produced by the mbed compiler for this code onto the mbed before connecting to the Pi and running and the Python script for the camera
+
+Full code for the mbed can be seen [here](https://github.com/dgr1/4180FinalProject/blob/master/mbed/main.cpp)
+
 
 ## Authors
 
